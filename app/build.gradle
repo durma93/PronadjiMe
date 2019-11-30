@@ -20,10 +20,17 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            manifestPlaceholders = [ google_map_key:GoolgeAPIKey]
+        }
         release {
+            manifestPlaceholders = [ google_map_key:GoolgeAPIKey]
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    buildTypes.each {
+        it.buildConfigField 'String', 'google_maps_api_key', GoolgeAPIKey
     }
 }
 
